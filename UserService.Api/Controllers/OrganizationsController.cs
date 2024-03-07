@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using UserService.Contracts.Organizations;
 
 namespace UserService.Api.Controllers;
 
@@ -7,74 +6,37 @@ namespace UserService.Api.Controllers;
 [Route("[controller]")]
 public class OrganizationsController : ControllerBase
 {
-    // private readonly IOrganizationService _service;
-    
-    public OrganizationsController()
-    {
-        // _service = service;  
-    }
-    
     [HttpGet]
     public IActionResult GetOrganizations()
     {
-        // HttpContext.Request.Headers -> token
-        var response = new List<object>();
         
-        return Ok(response);
+        return Ok();
     }
     
     [HttpGet("{id}")]
-    public IActionResult Get(int id)
+    public IActionResult Get(string id)
     {
-        // HttpContext.Request.Headers -> token
         
-        Console.WriteLine(id);
-        
-        var response = new OrganizationResponse(
-            0,
-            0,
-            "",
-            ""
-        );
-        
-        return Ok(response);
+        return Ok();
     }
 
     [HttpPost]
     public IActionResult Add()
     {
-        // HttpContext.Request.Headers -> token
-        
-        var response = new OrganizationResponse(
-            0,
-            0,
-            "",
-            ""
-        );
-        
-        return Ok(response);
+
+        return Ok();
     }
     
     [HttpPatch("{id}")]
-    public IActionResult Edit(int id)
+    public IActionResult Edit(string id)
     {
-        // HttpContext.Request.Headers -> token
-        
-        var response = new OrganizationResponse(
-            0,
-            0,
-            "",
-            ""
-        );
-        
-        return Ok(response);
+
+        return Ok();
     }
     
     [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
+    public IActionResult Delete(string id)
     {
-        // HttpContext.Request.Headers -> token
-        
         return Ok();
     }
 }

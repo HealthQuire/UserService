@@ -1,15 +1,72 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using UserService.Api.Contracts.Requests;
+using UserService.Application.Services.User;
+
 namespace UserService.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class UsersController
+public class UsersController : ControllerBase
 {
-    // For other backends
-    // For my backend go directly to UserService
+    private readonly IUserService _service;
     
-    // login register
-    // короче когда там токен умер на фронте, есть рефреш токен который чекается на фронте и если он видит что 
-    // скам по токену обращается к !! сервису андрея !! и говорит дай мне новый блядский токен
-    // у меня токен возвращается только при реге и при логине
+    public UsersController(IUserService service)
+    {
+        _service = service;
+    }
+    
+    // [HttpPost]
+    // public IActionResult Login()
+    // {
+    //     return Ok();
+    // }
+    //
+    // [HttpPost]
+    // public IActionResult Register()
+    // {
+    //     return Ok();
+    // }
+
+    [HttpGet]
+    public IActionResult GetUsers()
+    {
+        var users = _service.GetUsers();
+        
+        return Ok(users);
+    }
+    
+    [HttpGet("{id}")]
+    public IActionResult Get(string id)
+    {
+        var userDto = _service.GetUser(id);
+        
+        return Ok(userDto);
+    }
+
+    [HttpPost]
+    public IActionResult Add(UserRequest request)
+    {
+        var userDto = _service.AddUser(
+            request.email,
+            request.password,
+            request.role,
+            request.phone,
+            request.avatarUrl,
+            request.status
+        );
+        
+        return Ok(userDto);
+    }
+    
+    [HttpPatch("{id}")]
+    public IActionResult Edit(string id)
+    {
+        return Ok();
+    }
+    
+    [HttpDelete("{id}")]
+    public IActionResult Delete(string id)
+    {
+        return Ok();
+    }
 }
