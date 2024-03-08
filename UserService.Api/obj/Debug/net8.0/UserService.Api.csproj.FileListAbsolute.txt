@@ -54,7 +54,6 @@ D:\Projects\web\HealthQuire\UserService\UserService.Api\bin\Debug\net8.0\UserSer
 D:\Projects\web\HealthQuire\UserService\UserService.Api\bin\Debug\net8.0\UserService.Infrastructure.pdb
 D:\Projects\web\HealthQuire\UserService\UserService.Api\bin\Debug\net8.0\UserService.Application.pdb
 D:\Projects\web\HealthQuire\UserService\UserService.Api\bin\Debug\net8.0\UserService.Domain.pdb
-D:\Projects\web\HealthQuire\UserService\UserService.Api\bin\Debug\net8.0\System.Security.Permissions.dll
 D:\Projects\web\HealthQuire\UserService\UserService.Api\bin\Debug\net8.0\BCrypt.Net-Next.dll
 D:\Projects\web\HealthQuire\UserService\UserService.Api\bin\Debug\net8.0\Humanizer.dll
 D:\Projects\web\HealthQuire\UserService\UserService.Api\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll

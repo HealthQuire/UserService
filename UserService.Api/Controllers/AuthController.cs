@@ -5,7 +5,6 @@ using UserService.Application.Services.Auth;
 namespace UserService.Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
 public class AuthController : ControllerBase
 {
     private readonly IAuthService _service;
@@ -15,6 +14,7 @@ public class AuthController : ControllerBase
         _service = service;
     }
     
+    [Route("login")]
     [HttpPost]
     public IActionResult Login(LoginRequest request)
     {
