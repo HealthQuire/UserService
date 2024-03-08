@@ -1,12 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iiLYiLhr2kOIsQrw86AO0lf5QbiSywM6/sXaY8EdEdUS67B6iqLUVrHcqkFrnVCsaBLc97DBI88UBSOFe85zzA==",
+  "dgSpecHash": "zYAZtScFJVjm7oXfi2Ga7fBp8mTAEfn0jX083r6vHsjH5gotZrvHq27zpRypaGNB86WmXpR7i5AnJVePGcHOyQ==",
   "success": true,
   "projectFilePath": "D:\\Projects\\web\\HealthQuire\\UserService\\UserService.Domain\\UserService.Domain.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\tyj5r\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.25\\microsoft.netcore.app.ref.6.0.25.nupkg.sha512",
-    "C:\\Users\\tyj5r\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.25\\microsoft.windowsdesktop.app.ref.6.0.25.nupkg.sha512",
-    "C:\\Users\\tyj5r\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.25\\microsoft.aspnetcore.app.ref.6.0.25.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }

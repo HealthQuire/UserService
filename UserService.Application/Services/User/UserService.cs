@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using AutoMapper;
+﻿using AutoMapper;
 using UserService.Application.Dtos;
 using UserService.Application.Interfaces;
 
