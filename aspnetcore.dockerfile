@@ -10,14 +10,7 @@ COPY . .
 
 EXPOSE 5137
 
-# RUN ["dotnet", "restore"]
-# RUN ["dotnet", "run", "--project", "./UserService.Api"]
-
-# RUN ["dotnet", "restore"]
-
-# ENTRYPOINT [ "/bin/bash/User", "-c", "dotnet run --project ./UserService.Api" ]
-
-ENTRYPOINT ["/bin/bash", "-c", "dotnet restore ./UserService.Api && dotnet run --project ./UserService.Api"]
+ENTRYPOINT ["/bin/bash", "-c", "dotnet restore ./UserService.Api && dotnet run --project ./UserService.Api --urls=http://0.0.0.0:5137/"]
 
 # Note that this is only for demo and is intended to keep things simple. 
 # A multi-stage dockerfile would normally be used here to build the .dll and use
