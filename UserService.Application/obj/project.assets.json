@@ -1735,19 +1735,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tyj5r\\.nuget\\packages\\": {}
+    "/Users/quasarity/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\web\\HealthQuire\\UserService\\UserService.Application\\UserService.Application.csproj",
+      "projectUniqueName": "/Users/quasarity/Documents/study/healthquire/UserService/UserService.Application/UserService.Application.csproj",
       "projectName": "UserService.Application",
-      "projectPath": "D:\\Projects\\web\\HealthQuire\\UserService\\UserService.Application\\UserService.Application.csproj",
-      "packagesPath": "C:\\Users\\tyj5r\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\web\\HealthQuire\\UserService\\UserService.Application\\obj\\",
+      "projectPath": "/Users/quasarity/Documents/study/healthquire/UserService/UserService.Application/UserService.Application.csproj",
+      "packagesPath": "/Users/quasarity/.nuget/packages/",
+      "outputPath": "/Users/quasarity/Documents/study/healthquire/UserService/UserService.Application/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\tyj5r\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/quasarity/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -1759,8 +1759,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Projects\\web\\HealthQuire\\UserService\\UserService.Domain\\UserService.Domain.csproj": {
-              "projectPath": "D:\\Projects\\web\\HealthQuire\\UserService\\UserService.Domain\\UserService.Domain.csproj"
+            "/Users/quasarity/Documents/study/healthquire/UserService/UserService.Domain/UserService.Domain.csproj": {
+              "projectPath": "/Users/quasarity/Documents/study/healthquire/UserService/UserService.Domain/UserService.Domain.csproj"
             }
           }
         }
@@ -1769,6 +1769,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -1808,7 +1813,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

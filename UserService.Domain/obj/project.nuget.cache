@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zYAZtScFJVjm7oXfi2Ga7fBp8mTAEfn0jX083r6vHsjH5gotZrvHq27zpRypaGNB86WmXpR7i5AnJVePGcHOyQ==",
+  "dgSpecHash": "ZEYnwa/432dHBiHwgDZuCwU/YYfFME0InvY/vEIFKncFimgO7r6/8rVt70DXXm9wOdX9L/Trrmf/PYaIcQF/6A==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\web\\HealthQuire\\UserService\\UserService.Domain\\UserService.Domain.csproj",
+  "projectFilePath": "/Users/quasarity/Documents/study/healthquire/UserService/UserService.Domain/UserService.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
