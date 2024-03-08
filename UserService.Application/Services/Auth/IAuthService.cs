@@ -1,6 +1,8 @@
-﻿namespace UserService.Application.Services.Auth;
+﻿using UserService.Application.Dtos;
 
-public class IAuthService
+namespace UserService.Application.Services.Auth;
+
+public interface IAuthService
 {
-    
+    public UserDto Login(string email, string password);
 }

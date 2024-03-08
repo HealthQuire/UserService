@@ -1,6 +1,7 @@
 ﻿using UserService.Application.Interfaces;
 using UserService.Domain.Entities;
 using UserService.Domain.Exceptions;
+using UserService.Infrastructure.Data;
 
 namespace UserService.Infrastructure.Repositories;
 
@@ -18,10 +19,7 @@ public class UserRepository : IUserRepository
     //     _context = context;
     // }
 
-    public List<User> GetUsers()
-    {
-        return MockedUserRepo._repo.ToList();
-    }   
+    public List<User> GetUsers() => MockedUserRepo._repo.ToList();
     
     public User GetUser(string id)
     {
@@ -32,8 +30,14 @@ public class UserRepository : IUserRepository
         return user;
     }
     
-    public void AddUser(User user)
+    public User GetUserByEmail(string email)
     {
-        MockedUserRepo._repo.Add(user);
+        var user = MockedUserRepo._repo.SingleOrDefault(user => user.Email == email);
+        
+        if (user is null) throw new NotFoundException("User do not exists");
+
+        return user;
     }
+    
+    public void AddUser(User user) => MockedUserRepo._repo.Add(user);
 }

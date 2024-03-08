@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BC = BCrypt.Net.BCrypt;
 using UserService.Application.Dtos;
 using UserService.Application.Interfaces;
 
@@ -18,7 +19,7 @@ public class UserService : IUserService
     public List<UserDto> GetUsers()
     {
         var users = _mapper.Map<List<UserDto>>(_repository.GetUsers());
-
+    
         return users;
     }
 
@@ -40,23 +41,14 @@ public class UserService : IUserService
         var user = new Domain.Entities.User
         {
             Email = email,
-            Password = password,
+            Password = BC.HashPassword(password),
             Role = role,
             Phone = phone,
             AvatarUrl = avatarUrl,
             Status = status
         };
         
-        // var hasher = new PasswordHasher<Domain.Entities.User>();
-        // string hashedPassword = hasher.HashPassword(user, password);
-        //
-        // user.Password = hashedPassword;
-        //
-        // var userWithoutPassword = user;
-        // userWithoutPassword.Password = "";
-        //
-        // var res = hasher.VerifyHashedPassword(userWithoutPassword, user.Password, password);
-        // Console.WriteLine(res);
+        // BC.Verify(password, passwordHash);
         
         _repository.AddUser(user);
 

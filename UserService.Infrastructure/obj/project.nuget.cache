@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "qPBgYhVmRQmtUKJ83ZnCZmsOjSRM3cZeB0vUcD8CDF824XBPfIOzYcpWOuy8bMGz22FnFN+eQ4ZoGoIJI8qJSg==",
+  "dgSpecHash": "q5e3UZ8mm42yk4J6DeqofG5q8C045qrzVtg9NVi/xS/G6y65xMkM14lksPqPOMCIj4aGFkWAY1n5WG2lxuxNCw==",
   "success": true,
   "projectFilePath": "D:\\Projects\\web\\HealthQuire\\UserService\\UserService.Infrastructure\\UserService.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tyj5r\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
+    "C:\\Users\\tyj5r\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\tyj5r\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\tyj5r\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\tyj5r\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",

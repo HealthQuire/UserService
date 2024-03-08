@@ -12,10 +12,10 @@ public static class DependencyInjection
     {
         services.AddScoped<IUserRepository, UserRepository>();
         
-        // services.AddDbContext<DataContext>(options =>
-        // {
-        //     options.UseNpgsql(connectionString);
-        // });
+        services.AddDbContext<DataContext>(options =>
+        {
+            options.UseNpgsql(connectionString);
+        });
 
         return services;
     }
