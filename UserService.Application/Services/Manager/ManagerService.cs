@@ -37,12 +37,16 @@ public class ManagerService : IManagerService
         string fatherName
     )
     {
+        // Check if medcentre with this medcentreId exists 
+        
         return new Domain.Entities.Manager();
     }
 
     // TODO
     public Domain.Entities.Manager EditManager(string id, JsonPatchDocument<Domain.Entities.Manager> patchDoc)
     {
+        // Check if medcentre with this medcentreId exists 
+        
         return new Domain.Entities.Manager();
     }
 
