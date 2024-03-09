@@ -45,6 +45,8 @@ public class UserService : IUserService
     {
         var user = _repository.GetUserByEmail(email);
         if (user != null) throw new Exception("User with this email is already exists");
+
+        if (role is < 0 or > 6) throw new Exception("Role value can be only in 1-6 interval");
         
         var newUser = new Domain.Entities.User
         {
@@ -71,6 +73,8 @@ public class UserService : IUserService
         patchDoc.ApplyTo(user);
         if (prevPasswordHash != user.Password)
             user.Password = BC.HashPassword(user.Password);
+        
+        if (user.Role is < 0 or > 6) throw new Exception("Role value can be only in 1-6 interval");
         
         _repository.EditUser();
         

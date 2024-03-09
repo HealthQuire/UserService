@@ -1,4 +1,6 @@
-﻿namespace UserService.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace UserService.Domain.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
 
 public class User

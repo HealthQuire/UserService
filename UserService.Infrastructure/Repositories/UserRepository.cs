@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.JsonPatch;
-using UserService.Application.Interfaces;
+﻿using UserService.Application.Interfaces;
 using UserService.Domain.Entities;
 using UserService.Domain.Exceptions;
 using UserService.Infrastructure.Data;
