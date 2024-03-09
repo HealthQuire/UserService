@@ -3,5 +3,5 @@
 public record OrganizationRequest(
     string ownerId,
     string name,
-    string status
+    string status = ""
     );

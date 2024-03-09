@@ -35,7 +35,7 @@ public class OrganizationService : IOrganizationService
     )
     {
         var organization = _repository.GetOrganizationByName(name);
-        if (organization != null) throw new Exception("Organization with this email is already exists");
+        if (organization != null) throw new Exception("Organization with this name is already exists");
 
         var newOrganization = new Domain.Entities.Organization()
         {

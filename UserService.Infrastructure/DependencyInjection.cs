@@ -12,6 +12,7 @@ public static class DependencyInjection
     {
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IOrganizationRepository, OrganizationRepository>();
+        services.AddScoped<IManagerRepository, ManagerRepository>();
         
         services.AddDbContext<DataContext>(options =>
         {
