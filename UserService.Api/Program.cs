@@ -4,6 +4,9 @@ using UserService.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 {
+    builder.Logging.ClearProviders();   
+    builder.Logging.AddConsole();
+    
     builder.Services
         .AddPresentation()
         .AddApplication()

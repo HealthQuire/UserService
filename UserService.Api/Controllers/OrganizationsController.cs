@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
+using UserService.Api.Contracts.Requests;
+using UserService.Application.Services.Organization;
+using UserService.Domain.Entities;
 
 namespace UserService.Api.Controllers;
 
@@ -6,37 +10,57 @@ namespace UserService.Api.Controllers;
 [Route("[controller]")]
 public class OrganizationsController : ControllerBase
 {
+    private readonly IOrganizationService _service;
+
+    public OrganizationsController(IOrganizationService service)
+    {
+        _service = service;
+    }
+    
     [HttpGet]
     public IActionResult GetOrganizations()
     {
+        var organizations = _service.GetOrganizations();
         
-        return Ok();
+        return Ok(organizations);
     }
     
     [HttpGet("{id}")]
-    public IActionResult Get(string id)
+    public IActionResult Get([FromRoute] string id)
     {
+        var organization = _service.GetOrganization(id);
         
-        return Ok();
+        return Ok(organization);
     }
 
     [HttpPost]
-    public IActionResult Add()
+    public IActionResult Add([FromBody] OrganizationRequest request)
     {
-
-        return Ok();
+        var organization = _service.AddOrganization(
+            request.ownerId,
+            request.name,
+            request.status
+        );
+        
+        return Ok(organization);
     }
     
     [HttpPatch("{id}")]
-    public IActionResult Edit(string id)
+    public IActionResult Edit(
+        string id,
+        [FromBody] JsonPatchDocument<Organization> patchDoc
+    )
     {
-
-        return Ok();
+        var updOrganization = _service.EditOrganization(id, patchDoc);
+        
+        return Ok(updOrganization);
     }
     
     [HttpDelete("{id}")]
-    public IActionResult Delete(string id)
+    public IActionResult Delete([FromRoute] string id)
     {
+        _service.DeleteOrganization(id);
+        
         return Ok();
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using UserService.Application.Helpers;
 using UserService.Application.Services.Auth;
+using UserService.Application.Services.Organization;
 
 namespace UserService.Application;
 
@@ -11,6 +12,7 @@ public static class DependencyInjection
     {
         services.AddScoped<IUserService, Services.User.UserService>();
         services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IOrganizationService, OrganizationService>();
         
         services.AddAutoMapper(typeof(MappingProfiles));
         

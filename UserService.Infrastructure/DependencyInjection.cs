@@ -11,6 +11,7 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, string? connectionString)
     {
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IOrganizationRepository, OrganizationRepository>();
         
         services.AddDbContext<DataContext>(options =>
         {
