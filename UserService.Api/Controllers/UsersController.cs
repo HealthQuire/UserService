@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
 using UserService.Api.Contracts.Requests;
 using UserService.Application.Services.User;
+using UserService.Domain.Entities;
 
 namespace UserService.Api.Controllers;
 
@@ -9,23 +11,11 @@ namespace UserService.Api.Controllers;
 public class UsersController : ControllerBase
 {
     private readonly IUserService _service;
-    
+
     public UsersController(IUserService service)
     {
         _service = service;
     }
-    
-    // [HttpPost]
-    // public IActionResult Login()
-    // {
-    //     return Ok();
-    // }
-    //
-    // [HttpPost]
-    // public IActionResult Register()
-    // {
-    //     return Ok();
-    // }
 
     [HttpGet]
     public IActionResult GetUsers()
@@ -36,7 +26,7 @@ public class UsersController : ControllerBase
     }
     
     [HttpGet("{id}")]
-    public IActionResult Get(string id)
+    public IActionResult Get([FromRoute] string id)
     {
         var userDto = _service.GetUser(id);
         
@@ -44,7 +34,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Add(UserRequest request)
+    public IActionResult Add([FromBody] UserRequest request)
     {
         var userDto = _service.AddUser(
             request.email,
@@ -59,14 +49,18 @@ public class UsersController : ControllerBase
     }
     
     [HttpPatch("{id}")]
-    public IActionResult Edit(string id)
+    public IActionResult Edit([FromRoute] string id, [FromBody] JsonPatchDocument<User> patchDoc)
     {
-        return Ok();
+        var updUser = _service.EditUser(id, patchDoc);
+        
+        return Ok(updUser);
     }
     
     [HttpDelete("{id}")]
-    public IActionResult Delete(string id)
+    public IActionResult Delete([FromRoute] string id)
     {
+        _service.DeleteUser(id);
+        
         return Ok();
     }
 }

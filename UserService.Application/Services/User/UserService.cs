@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using BC = BCrypt.Net.BCrypt;
 using UserService.Application.Dtos;
 using UserService.Application.Interfaces;
+using UserService.Domain.Exceptions;
 
 namespace UserService.Application.Services.User;
 
@@ -25,9 +27,12 @@ public class UserService : IUserService
 
     public UserDto GetUser(string id)
     {
-        var user = _mapper.Map<UserDto>(_repository.GetUser(id));
+        var user = _repository.GetUser(id);
+        if (user == null) throw new NotFoundException("User do not exists");
+        
+        var userDto = _mapper.Map<UserDto>(user);
 
-        return user;
+        return userDto;
     }
 
     public UserDto AddUser(
@@ -38,7 +43,10 @@ public class UserService : IUserService
         string avatarUrl,
         string status)
     {
-        var user = new Domain.Entities.User
+        var user = _repository.GetUserByEmail(email);
+        if (user != null) throw new Exception("User with this email is already exists");
+        
+        var newUser = new Domain.Entities.User
         {
             Email = email,
             Password = BC.HashPassword(password),
@@ -48,10 +56,27 @@ public class UserService : IUserService
             Status = status
         };
         
-        // BC.Verify(password, passwordHash);
-        
-        _repository.AddUser(user);
+        _repository.AddUser(newUser);
 
+        return _mapper.Map<UserDto>(newUser);
+    }
+
+    public UserDto EditUser(string id, JsonPatchDocument<Domain.Entities.User> patchDoc)
+    {
+        var user = _repository.GetUser(id);
+        if (user == null) throw new NotFoundException("User do not exists");
+        
+        var prevPasswordHash = user.Password;
+        
+        patchDoc.ApplyTo(user);
+        if (prevPasswordHash != user.Password)
+            user.Password = BC.HashPassword(user.Password);
+        
+        _repository.EditUser();
+        
         return _mapper.Map<UserDto>(user);
     }
+
+    public void DeleteUser(string id) =>
+        _repository.DeleteUser(id);
 }

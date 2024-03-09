@@ -1,14 +1,10 @@
-﻿using UserService.Application.Interfaces;
+﻿using Microsoft.AspNetCore.JsonPatch;
+using UserService.Application.Interfaces;
 using UserService.Domain.Entities;
 using UserService.Domain.Exceptions;
 using UserService.Infrastructure.Data;
 
 namespace UserService.Infrastructure.Repositories;
-
-// public static class MockedUserRepo
-// {
-//     public static readonly List<User> _repo = new();
-// }
 
 public class UserRepository : IUserRepository
 {
@@ -21,23 +17,27 @@ public class UserRepository : IUserRepository
 
     public List<User> GetUsers() => _context.Users.ToList();
     
-    public User GetUser(string id)
-    {
-        var user = _context.Users.SingleOrDefault(user => user.Id == id);
-        
-        if (user is null) throw new NotFoundException("User do not exists");
+    public User? GetUser(string id) =>
+        _context.Users.SingleOrDefault(user => user.Id == id);
+    
+    public User? GetUserByEmail(string email) => 
+        _context.Users.SingleOrDefault(user => user.Email == email);
 
-        return user;
+    public void AddUser(User user)
+    {
+        _context.Users.Add(user);
+        _context.SaveChanges();
     }
     
-    public User GetUserByEmail(string email)
-    {
-        var user = _context.Users.SingleOrDefault(user => user.Email == email);
-        
-        if (user is null) throw new NotFoundException("User do not exists");
+    public void EditUser() =>
+        _context.SaveChanges();
 
-        return user;
+    public void DeleteUser(string id)
+    {
+        var user = GetUser(id);
+        if (user == null) throw new NotFoundException("User do not exists");
+
+        _context.Users.Remove(user);
+        _context.SaveChanges();
     }
-    
-    public void AddUser(User user) => _context.Users.Add(user);
 }

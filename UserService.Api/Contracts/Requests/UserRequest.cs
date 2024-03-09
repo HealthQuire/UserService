@@ -4,7 +4,7 @@ public record UserRequest(
     string email,
     string password,
     int role,
-    string phone,
-    string avatarUrl,
-    string status
+    string phone = "",
+    string avatarUrl = "",
+    string status = ""
 );
