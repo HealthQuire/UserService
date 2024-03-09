@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 5137
 
-ENTRYPOINT ["/bin/bash", "-c", "dotnet restore ./UserService.Api && dotnet run --project ./UserService.Api --urls=http://0.0.0.0:5137/"]
+ENTRYPOINT ["/bin/bash", "-c", "dotnet restore ./UserService.Api && dotnet run --project ./UserService.Api --urls=http://0.0.0.0:5137/"] 
