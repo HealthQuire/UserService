@@ -11,5 +11,5 @@ public interface IUserRepository
     public User? GetUserByEmail(string email);
     public void AddUser(User user);
     public void EditUser();
-    public void DeleteUser(string id);
+    public void DeleteUser(User user);
 }

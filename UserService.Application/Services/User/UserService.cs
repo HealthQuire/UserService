@@ -81,6 +81,11 @@ public class UserService : IUserService
         return _mapper.Map<UserDto>(user);
     }
 
-    public void DeleteUser(string id) =>
-        _repository.DeleteUser(id);
+    public void DeleteUser(string id)
+    {
+        var user = _repository.GetUser(id);
+        if (user == null) throw new NotFoundException("User do not exists");
+        
+        _repository.DeleteUser(user);
+    }
 }

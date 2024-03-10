@@ -8,5 +8,5 @@ public interface IManagerRepository
     public Manager? GetManager(string id);
     public void AddManager(Manager manager);
     public void EditManager();
-    public void DeleteManager(string id);
+    public void DeleteManager(Manager id);
 }

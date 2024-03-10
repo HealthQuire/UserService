@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using UserService.Api.Contracts.Requests;
 using UserService.Api.Contracts.Responses;
 using UserService.Application.Services.Manager;
+using UserService.Application.Services.User;
 using UserService.Domain.Entities;
 
 namespace UserService.Api.Controllers;
@@ -11,17 +12,19 @@ namespace UserService.Api.Controllers;
 [Route("[controller]")]
 public class ManagersController : ControllerBase
 {
-    private readonly IManagerService _service;
+    private readonly IManagerService _managerService;
+    private readonly IUserService _userService;
     
-    public ManagersController(IManagerService service)
+    public ManagersController(IManagerService managerService, IUserService userService)
     {
-        _service = service;
+        _managerService = managerService;
+        _userService = userService;
     }
     
     [HttpGet]
     public IActionResult GetManagers()
     {
-        var managers = _service.GetManagers();
+        var managers = _managerService.GetManagers();
         
         return Ok(managers);
     }
@@ -29,20 +32,24 @@ public class ManagersController : ControllerBase
     [HttpGet("{id}")]
     public IActionResult Get([FromRoute] string id)
     {
-        var manager = _service.GetManager(id);
+        var manager = _managerService.GetManager(id);
         
         return Ok(manager);
     }
-
-    // TODO
+    
     [HttpPost]
     public IActionResult Add([FromBody] ManagerRequest request)
     {
-        var userRequest = request.user;
-
-        var user = new User();
+        var user = _userService.AddUser(
+            request.email,
+            request.password,
+            request.role,
+            request.phone,
+            request.avatarUrl,
+            request.status
+        );
         
-        var manager = _service.AddManager(
+        var manager = _managerService.AddManager(
             user.Id,
             request.medcentreId,
             request.firstName,
@@ -51,7 +58,17 @@ public class ManagersController : ControllerBase
         );
 
         var response = new ManagerResponse(
-            
+            manager.Id,
+            user.Id,
+            manager.MedcentreId,
+            manager.FirstName,
+            manager.LastName,
+            manager.FatherName,
+            user.Email,
+            user.Role,
+            user.Phone,
+            user.AvatarUrl,
+            user.Status
             );
         
         return Ok(response);
@@ -61,19 +78,34 @@ public class ManagersController : ControllerBase
     [HttpPatch("{id}")]
     public IActionResult Edit(
         string id,
-        [FromBody] JsonPatchDocument<Manager> patchDoc
+        [FromBody] JsonPatchDocument<User> patchUserDoc,
+        [FromBody] JsonPatchDocument<Manager> patchManagerDoc
     )
     {
-        var updManager = _service.EditManager(id, patchDoc);
+        var updUser = _userService.EditUser(id, patchUserDoc);
+        var updManager = _managerService.EditManager(id, patchManagerDoc);
         
-        return Ok(updManager);
+        var response = new ManagerResponse(
+            updManager.Id,
+            updUser.Id,
+            updManager.MedcentreId,
+            updManager.FirstName,
+            updManager.LastName,
+            updManager.FatherName,
+            updUser.Email,
+            updUser.Role,
+            updUser.Phone,
+            updUser.AvatarUrl,
+            updUser.Status
+        );
+        
+        return Ok(response);
     }
     
-    // TODO
     [HttpDelete("{id}")]
     public IActionResult Delete([FromRoute] string id)
     {
-        _service.DeleteManager(id);
+        _managerService.DeleteManager(id);
         
         return Ok();
     }

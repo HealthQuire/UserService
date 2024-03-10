@@ -10,5 +10,5 @@ public interface IOrganizationRepository
     public Organization? GetOrganizationByName(string name);
     public void AddOrganization(Organization user);
     public void EditOrganization();
-    public void DeleteOrganization(string id);
+    public void DeleteOrganization(Organization organization);
 }

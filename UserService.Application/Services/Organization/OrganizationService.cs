@@ -66,6 +66,9 @@ public class OrganizationService : IOrganizationService
 
     public void DeleteOrganization(string id)
     {
-        _repository.DeleteOrganization(id);
+        var organization = _repository.GetOrganization(id);
+        if (organization == null) throw new NotFoundException("Organization do not exists");
+        
+        _repository.DeleteOrganization(organization);
     }
 }

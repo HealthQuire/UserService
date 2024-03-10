@@ -9,12 +9,11 @@ public class OrganizationRepository : IOrganizationRepository
 {
     private readonly DataContext _context;
     
-    public OrganizationRepository(DataContext context)
-    {
+    public OrganizationRepository(DataContext context) =>
         _context = context;
-    }
 
-    public List<Organization> GetOrganizations() => _context.Organizations.ToList();
+    public List<Organization> GetOrganizations() =>
+        _context.Organizations.ToList();
 
     public Organization? GetOrganization(string id) => 
         _context.Organizations.SingleOrDefault(organization => organization.Id == id);
@@ -31,11 +30,8 @@ public class OrganizationRepository : IOrganizationRepository
     public void EditOrganization() =>
         _context.SaveChanges();
 
-    public void DeleteOrganization(string id)
+    public void DeleteOrganization(Organization organization)
     {
-        var organization = GetOrganization(id);
-        if (organization == null) throw new NotFoundException("Organization do not exists");
-        
         _context.Organizations.Remove(organization);
         _context.SaveChanges();
     }
