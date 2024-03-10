@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.JsonPatch;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using UserService.Api.Contracts.Requests;
 using UserService.Api.Contracts.Responses;
 using UserService.Application.Services.Manager;
 using UserService.Application.Services.User;
-using UserService.Domain.Entities;
-
 namespace UserService.Api.Controllers;
 
 [ApiController]
@@ -74,16 +71,12 @@ public class ManagersController : ControllerBase
         return Ok(response);
     }
     
-    // TODO
     [HttpPatch("{id}")]
-    public IActionResult Edit(
-        string id,
-        [FromBody] JsonPatchDocument<User> patchUserDoc,
-        [FromBody] JsonPatchDocument<Manager> patchManagerDoc
-    )
+    public IActionResult Edit([FromRoute] string id, [FromBody] EditManagerRequest request)
     {
-        var updUser = _userService.EditUser(id, patchUserDoc);
-        var updManager = _managerService.EditManager(id, patchManagerDoc);
+        var manager = _managerService.GetManager(id);
+        var updUser = _userService.EditUser(manager.UserId, request.patchUserDoc);
+        var updManager = _managerService.EditManager(id, request.patchManagerDoc);
         
         var response = new ManagerResponse(
             updManager.Id,

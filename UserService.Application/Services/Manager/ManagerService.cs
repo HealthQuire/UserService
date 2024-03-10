@@ -44,7 +44,14 @@ public class ManagerService : IManagerService
     )
     {
         var organization = _organizationRepository.GetOrganization(medcentreId);
-        if (organization == null) throw new NotFoundException("Med centre with this id do not exists");
+        if (organization == null)
+        {
+            var user = _userRepository.GetUser(userId);
+            if (user == null) throw new NotFoundException("User do not exists");
+            _userRepository.DeleteUser(user);
+            
+            throw new NotFoundException("Med centre with this id do not exists");
+        }
 
         var newManager = new Domain.Entities.Manager()
         {
@@ -59,8 +66,7 @@ public class ManagerService : IManagerService
         
         return newManager;
     }
-
-    // TODO
+    
     public Domain.Entities.Manager EditManager(string id, JsonPatchDocument<Domain.Entities.Manager> patchDoc)
     {
         var manager = _managerRepository.GetManager(id);
@@ -82,7 +88,11 @@ public class ManagerService : IManagerService
     {
         var manager = _managerRepository.GetManager(id);
         if (manager == null) throw new NotFoundException("Manager do not exists");
-        
+
+        var user = _userRepository.GetUser(manager.UserId);
+        if (user == null) throw new NotFoundException("User do not exists");
+            
         _managerRepository.DeleteManager(manager);
+        _userRepository.DeleteUser(user);
     }
 }
