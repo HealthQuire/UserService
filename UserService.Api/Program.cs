@@ -7,6 +7,17 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Logging.ClearProviders();   
     builder.Logging.AddConsole();
     
+    builder.Services.AddCors(options =>
+    {
+        options.AddDefaultPolicy(
+            policy =>
+            {
+                policy.WithOrigins("*")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            });
+    });
+    
     builder.Services
         .AddPresentation()
         .AddApplication()
@@ -21,6 +32,7 @@ var app = builder.Build();
         app.UseSwaggerUI();
     }
     
+    app.UseCors();
     app.UseExceptionHandler("/error");
     app.MapControllers();
     app.UseHttpsRedirection();

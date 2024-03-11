@@ -14,6 +14,8 @@ public class ErrorsController : ControllerBase
         var exception = HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
 
         var message = exception != null ? exception.Message : "Unexpected error";
+        Console.WriteLine(message);
+        
         var code = exception switch
         {
             NotFoundException => 404,
